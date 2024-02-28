@@ -36,5 +36,24 @@ console.log(calc(1, 1, (a, b) => a + b)); //=> 2
 console.log(calc(1, 1, (a, b) => a - b)); //=> 0
 
 // default param
+function pow(base, index = 1) {
+  return base ** index;
+}
+
+console.log(pow(2)); //=> 2
+console.log(pow(2, 2)); //=> 4
 
 // rest param
+function sumAll(...params) {
+  let total = 0;
+
+  for (const value of params) {
+    total += value;
+  }
+
+  return total;
+}
+
+console.log(sumAll(1)); //=> 1 ; params [1]
+console.log(sumAll(1, 1)); //=> 2 ; params [1, 1]
+console.log(sumAll(1, 1, 1, 1)); //=> 4 ; params [1, 1, 1, 1]
