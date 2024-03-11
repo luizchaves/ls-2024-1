@@ -96,3 +96,24 @@ for (const [index, value] of values.entries()) {
 // Mutator: push(), unshift(), pop(), shift(), reverse(), sort(), splice()
 // Accessor: includes(), join(), slice()
 // Iteration: map(), filter(), reduce(), every(), some()
+
+[1, 2, 3].forEach((x) => {
+  x = x + 5;
+  console.log(x);
+}); //=> undefined
+
+console.log([1, 2, 3].map((x) => 2 * x)); //=> [2, 4, 6]
+console.log([1, 2, 3].map((x) => x + 5)); //=> [6, 7, 8]
+
+console.log([1, 2, 3, 4, 5].filter((x) => x % 2 === 0)); //=> [2, 4]
+
+console.log([1, 2, 3, 4].reduce((acc, value) => acc + value, 0)); //=> 10
+console.log([1, 2, 3, 4].reduce((acc, value) => acc + value)); //=> 10
+
+console.log([1, 2, 3, 4, 5].every((x) => x % 2 === 0)); //=> false
+console.log([1, 3, 5].every((x) => x % 2 === 0)); //=> false
+console.log([2, 4, 6].every((x) => x % 2 === 0)); //=> true
+
+console.log([1, 2, 3, 4, 5].some((x) => x % 2 === 0)); //=> true
+console.log([1, 3, 5].some((x) => x % 2 === 0)); //=> false
+console.log([2, 4, 6].some((x) => x % 2 === 0)); //=> true
