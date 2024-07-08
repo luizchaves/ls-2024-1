@@ -17,14 +17,22 @@
           .join('');
       }
 
+      function handleGenerateList() {
+        const count = Number(input.value);
+
+        list.innerHTML = generateList(count);
+      }
+
       const btn = document.querySelector('button');
       const input = document.querySelector('input');
       const list = document.querySelector('ul');
 
-      btn.onclick = () => {
-        const count = Number(input.value);
+      btn.onclick = handleGenerateList;
 
-        list.innerHTML = generateList(count);
+      document.onkeyup = (event) => {
+        if (event.key === 'Enter') {
+          handleGenerateList();
+        }
       };
     </script>
   </body>
