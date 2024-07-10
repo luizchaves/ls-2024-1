@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <title>IMC</title>
+  </head>
+  <body>
+    <main class="container py-5">
+      <div class="card w-50 m-auto">
+        <div class="card-header fw-bold fs-2 text-center">IMC</div>
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="weight" class="form-label">Peso:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="weight"
+                name="weight"
+                autofocus
+              />
+            </div>
+            <div class="mb-3">
+              <label for="height" class="form-label">Altura:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="height"
+                name="height"
+              />
+            </div>
+            <div class="mb-3">
+              <p class="form-label">Sexo:</p>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="male"
+                  value="male"
+                />
+                <label class="form-check-label" for="male">Masculino</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="gender"
+                  id="female"
+                  value="female"
+                />
+                <label class="form-check-label" for="female">Feminino</label>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="bmi-status" class="form-label">Condição:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="bmi-status"
+                readonly
+              />
+            </div>
+            <div class="mb-3">
+              <button type="submit" class="btn btn-secondary">Calcular</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function bmi(weight, height, gender) {
+        // TODO
+        return 'normalWeight';
+      }
+
+      const bmiStatus = {
+        underweight: {
+          name: 'Abaixo do Peso',
+          style: 'border border-warning bg-warning text-white',
+        },
+        normalWeight: {
+          name: 'Peso normal',
+          style: 'border border-success bg-success text-white',
+        },
+        marginallyOverweight: {
+          name: 'Marginalmente acima',
+          style: 'border border-warning bg-warning text-white',
+        },
+        overweight: {
+          name: 'Acima do peso',
+          style: 'border border-warning bg-warning text-white',
+        },
+        obese: {
+          name: 'Obeso',
+          style: 'border border-danger bg-danger text-white',
+        },
+      };
+
+      const form = document.querySelector('form');
+
+      form.onsubmit = (event) => {
+        event.preventDefault();
+
+        const data = new FormData(form);
+
+        const status = bmi(
+          data.get('weight'),
+          data.get('height'),
+          data.get('gender')
+        );
+
+        const statusTag = document.querySelector('#bmi-status');
+
+        statusTag.value = bmiStatus[status].name;
+
+        // statusTag.setAttribute(
+        //   'class',
+        //   'form-control ' + bmiStatus[status].style
+        // );
+        statusTag.className = 'form-control ' + bmiStatus[status].style;
+
+        form.reset();
+      };
+
+      document.onkeyup = (event) => {
+        if (event.key === 'Escape') {
+          form.reset();
+        }
+      };
+    </script>
+  </body>
+</html>
