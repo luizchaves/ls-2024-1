@@ -11,7 +11,7 @@ export function InvestmentCard(investment) {
           ${investment.name}
         </h3>
         <p class="text-lg font-semibold text-gray-700">
-          ${formatCurrency(investment.value)}
+          ${formatCurrency(investment.value / 100)}
         </p>
       </div>
       <div class="mt-4">
