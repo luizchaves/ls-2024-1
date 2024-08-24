@@ -15,6 +15,9 @@
     "vite": "^5.4.0"
   },
   "dependencies": {
+    "@iconify/iconify": "^3.1.1",
+    "@preline/overlay": "^2.4.1",
+    "preline": "^2.4.1",
     "uuid": "^10.0.0"
   }
 }
