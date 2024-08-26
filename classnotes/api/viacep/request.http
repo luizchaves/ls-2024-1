@@ -1,0 +1,9 @@
+@server=https://viacep.com.br
+
+###
+
+GET {{server}}/ws/58015430/json/
+
+###
+
+GET {{server}}/ws/01001000/json/
