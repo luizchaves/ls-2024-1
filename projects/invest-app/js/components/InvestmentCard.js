@@ -2,6 +2,7 @@ import Investments from '../lib/investments';
 import InvestmentForm from './InvestmentForm';
 import { $ } from '../lib/dom';
 import { formatCurrency, formatDate } from '../lib/format';
+import { HSOverlay } from 'preline';
 
 function create(investment) {
   const card = `
@@ -74,6 +75,8 @@ function create(investment) {
     InvestmentForm.setValues(investment);
 
     InvestmentForm.handleSubmit(Investments.update);
+
+    HSOverlay.open('#investment-drawer');
   };
 
   $(`#investment-${investment.id} .icon-trash`).onclick = () => {
@@ -81,6 +84,8 @@ function create(investment) {
 
     $(`.modal .remove-investment-btn`).onclick = () =>
       Investments.remove(investment);
+
+    HSOverlay.open('#hs-basic-modal');
   };
 }
 
