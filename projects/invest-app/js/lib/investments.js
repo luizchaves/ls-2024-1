@@ -1,5 +1,5 @@
 import InvestmentCard from '../components/InvestmentCard';
-import Storage from '../services/storage-fetch';
+import Storage from '../services/storage-axios';
 
 async function load() {
   const investments = await Storage.read('investments');
