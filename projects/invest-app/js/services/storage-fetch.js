@@ -11,7 +11,7 @@ async function create(resource, data) {
       Prefer: 'return=representation',
       'Content-Type': 'application/json',
     },
-    method: 'post',
+    method: 'POST',
     body: JSON.stringify(data),
   };
 
@@ -30,7 +30,7 @@ async function read(resource) {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
     },
-    method: 'get',
+    method: 'GET',
   };
 
   const res = await fetch(resource, options);
@@ -48,7 +48,7 @@ async function update(resource, id, data) {
       Prefer: 'return=representation',
       'Content-Type': 'application/json',
     },
-    method: 'patch',
+    method: 'PATCH',
     body: JSON.stringify(data),
   };
 
@@ -67,7 +67,7 @@ async function remove(resource, id) {
       apikey: API_TOKEN,
       Authorization: `Bearer ${API_TOKEN}`,
     },
-    method: 'delete',
+    method: 'DELETE',
   };
 
   const res = await fetch(resource, options);
