@@ -47,7 +47,6 @@ function create(investment) {
       <div class="absolute bottom-4 right-4 inline-flex">
         <span
           class="icon-trash mr-1 text-gray-400 hover:text-gray-700 cursor-pointer"
-          data-hs-overlay="#hs-basic-modal"
         >
           <span
             class="iconify"
@@ -57,7 +56,6 @@ function create(investment) {
         </span>
         <span
           class="icon-pencil text-gray-400 hover:text-gray-700 cursor-pointer"
-          data-hs-overlay="#investment-drawer"
         >
           <span
             class="iconify"

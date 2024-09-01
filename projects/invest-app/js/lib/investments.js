@@ -1,5 +1,5 @@
 import InvestmentCard from '../components/InvestmentCard';
-import Storage from '../services/storage-axios';
+import Storage from '../services/storage-fetch';
 
 async function load() {
   const investments = await Storage.read('investments');
@@ -23,7 +23,7 @@ async function update(investment) {
   InvestmentCard.update(updatedInvestment);
 }
 
-function remove(investment) {
+async function remove(investment) {
   const { id } = investment;
 
   Storage.remove('investments', id);
