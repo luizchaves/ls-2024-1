@@ -22,8 +22,10 @@ async function create(resource, data) {
   return createdData?.[0];
 }
 
-async function read(resource) {
-  resource = `${API_URL}/${resource}`;
+async function read(resource, id) {
+  resource = id
+    ? `${API_URL}/${resource}?id=eq.${id}`
+    : `${API_URL}/${resource}`;
 
   const options = {
     headers: {

@@ -25,7 +25,11 @@ async function create(resource, data) {
   return createdData?.[0];
 }
 
-async function read(resource) {
+async function read(resource, id) {
+  if (id) {
+    resource = `${resource}?id=eq.${id}`;
+  }
+
   const { data } = await API.get(resource);
 
   return data;

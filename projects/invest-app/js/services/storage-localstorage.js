@@ -18,45 +18,45 @@ function storageSelect(key, isJSON = true) {
   return data;
 }
 
-function load(resource, data) {
+function load(resource, dataset) {
   if (storageSelect('loaded', false) !== 'ok') {
-    storageInsert(resource, data);
+    storageInsert(resource, dataset);
 
     storageInsert('loaded', 'ok');
   }
 }
 
 function create(resource, data) {
-  const datas = storageSelect(resource);
+  const dataset = storageSelect(resource);
 
   data = { ...data, id: uuidv4() };
 
-  storageInsert(resource, [...datas, data]);
+  storageInsert(resource, [...dataset, data]);
 
   return data;
 }
 
 function read(resource, id) {
-  const datas = storageSelect(resource);
+  const dataset = storageSelect(resource);
 
   if (id) {
-    return datas.find((data) => data.id === id);
+    return dataset.find((data) => data.id === id);
   } else {
-    return datas;
+    return dataset;
   }
 }
 
 function update(resource, id, data) {
-  const datas = storageSelect(resource);
+  const dataset = storageSelect(resource);
 
-  const index = datas.findIndex((data) => data.id === id);
+  const index = dataset.findIndex((data) => data.id === id);
 
   if (index >= 0) {
     data = { id, ...data };
 
-    datas[index] = { ...datas[index], ...data };
+    dataset[index] = { ...dataset[index], ...data };
 
-    storageInsert(resource, datas);
+    storageInsert(resource, dataset);
 
     return data;
   } else {
@@ -65,15 +65,15 @@ function update(resource, id, data) {
 }
 
 function remove(resource, id) {
-  const datas = storageSelect(resource);
+  const dataset = storageSelect(resource);
 
-  const index = datas.findIndex((data) => data.id === id);
+  const index = dataset.findIndex((data) => data.id === id);
 
   if (index >= 0) {
-    datas.splice(index, 1);
+    dataset.splice(index, 1);
   }
 
-  storageInsert(resource, datas);
+  storageInsert(resource, dataset);
 }
 
 export default { load, create, read, update, remove };
