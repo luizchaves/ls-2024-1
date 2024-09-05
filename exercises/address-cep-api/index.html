@@ -13,8 +13,8 @@
   </head>
   <body>
     <div class="container">
-      <h1>Cadastro de Endereço</h1>
-      <form>
+      <h1 class="text-center my-5">Cadastro de Endereço</h1>
+      <form class="w-50 m-auto">
         <div class="mb-3">
           <label for="cep" class="form-label">CEP</label>
           <input
@@ -22,6 +22,7 @@
             class="form-control"
             id="cep"
             placeholder="12345678"
+            autofocus
           />
         </div>
         <div class="mb-3">
@@ -40,19 +41,35 @@
       const streetInput = document.querySelector('#street');
 
       async function getCepValues(cep) {
-        const response = await fetch('http://viacep.com.br/ws/01001000/json/');
+        const response = await fetch(`http://viacep.com.br/ws/${cep}/json/`);
 
         return await response.json();
       }
 
+      cepInput.oninput = () => {
+        // remove invalid class
+        cepInput.classList.remove('is-invalid');
+      };
+
       cepInput.onchange = async () => {
+        // add loading
+
         // get cep value
-        const cep = cepInput.value;
+        let cep = cepInput.value;
 
-        // get api viacep
-        const { logradouro } = await getCepValues(cep);
+        if (/^(\d{8}|\d{2}\.?\d{3}-\d{3})$/.test(cep)) {
+          cepInput.classList.remove('is-invalid');
 
-        streetInput.value = logradouro;
+          cep = cep.replace(/[\.-]/g, '');
+
+          // get api viacep
+          const { logradouro } = await getCepValues(cep);
+
+          streetInput.value = logradouro;
+        } else {
+          // mark input with invalid
+          cepInput.classList.add('is-invalid');
+        }
       };
     </script>
   </body>
